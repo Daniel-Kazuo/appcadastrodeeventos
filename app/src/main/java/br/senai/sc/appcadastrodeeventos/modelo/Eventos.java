@@ -1,7 +1,5 @@
 package br.senai.sc.appcadastrodeeventos.modelo;
 
-import androidx.annotation.NonNull;
-
 import java.io.Serializable;
 
 public class Eventos implements Serializable {
@@ -24,42 +22,25 @@ public class Eventos implements Serializable {
         this.local = local;
     }
 
-    public int getId() {
-        return id;
-    }
+    public int getId() { return id; }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public void setId(int id) { this.id = id; }
 
-    public String getNome() {
-        return nome;
-    }
+    public String getNome() { return nome; }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    public void setNome(String nome) { this.nome = nome; }
 
-    public String getData() {
-        return data;
-    }
+    public String getData() { return data; }
 
-    public void setData(String data) {
-        this.data = data;
-    }
+    public void setData(String data) { this.data = data; }
 
-    public String getLocal() {
-        return local;
-    }
+    public String getLocal() { return local; }
 
-    public void setLocal(String local) {
-        this.local = local;
-    }
+    public void setLocal(String local) { this.local = local; }
 
-    @Override
     public String toString() {
-        return "Evento: " + nome +
+        return  "Evento: " + nome +
                 "\nData: " + data +
-                "\nLocal: " + local ;
+                "\nLocal: " + local;
     }
 }
