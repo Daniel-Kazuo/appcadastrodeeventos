@@ -3,8 +3,6 @@ package br.senai.sc.appcadastrodeeventos.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-import br.senai.DatabaseDBHelper;
-
 public class DBGateway {
 
     private static DBGateway dbGateway;

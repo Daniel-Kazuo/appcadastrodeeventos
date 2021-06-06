@@ -4,6 +4,8 @@ import android.provider.BaseColumns;
 
 public final class EventoEntity implements BaseColumns {
 
+    public static final String COLUMN_NAME_ID_LOCAL = "idlocal";
+
     private EventoEntity() {}
 
     public static final String TABLE_NAME = "evento";

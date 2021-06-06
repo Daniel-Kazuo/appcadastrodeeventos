@@ -1,68 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".CadastroEventoActivity">
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tv_descricaoNovoEvento"
+        android:id="@+id/et_descricaoNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Evento" />
+        android:text="Nome do Local" />
 
     <EditText
-        android:id="@+id/ed_edicaoNovoEvento"
+        android:id="@+id/et_nome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName" />
 
     <TextView
-        android:id="@+id/tv_descricaoData"
+        android:id="@+id/et_descricaoBairro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Data" />
+        android:text="Bairro" />
 
     <EditText
-        android:id="@+id/ed_edicaoNovaData"
+        android:id="@+id/et_bairro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="date" />
+        android:inputType="textPersonName" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/et_descricaoCidade"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Locais Cadastrados" />
+        android:text="Cidade" />
 
-    <Spinner
-        android:id="@+id/sp_locais"
+    <EditText
+        android:id="@+id/et_cidade"
         android:layout_width="match_parent"
-        android:layout_height="40dp" />
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/et_descricaoCapacidade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Capacidade" />
+
+    <EditText
+        android:id="@+id/et_capacidade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/imbt_voltar"
+        <Button
+            android:id="@+id/bt_voltar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClickVoltar"
-            app:srcCompat="@android:drawable/ic_menu_revert" />
+            android:text="Voltar" />
 
-        <ImageButton
-            android:id="@+id/imbt_salvar"
+        <Button
+            android:id="@+id/bt_salvar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClickSalvar"
-            app:srcCompat="@android:drawable/ic_menu_save" />
+            android:text="Salvar" />
     </LinearLayout>
 </LinearLayout>

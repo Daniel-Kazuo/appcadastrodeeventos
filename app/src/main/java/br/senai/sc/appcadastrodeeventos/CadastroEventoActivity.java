@@ -5,19 +5,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import br.senai.sc.appcadastrodeeventos.database.EventoDAO;
+import br.senai.sc.appcadastrodeeventos.database.LocalDAO;
 import br.senai.sc.appcadastrodeeventos.modelo.Eventos;
+import br.senai.sc.appcadastrodeeventos.modelo.Local;
 
 public class CadastroEventoActivity extends AppCompatActivity {
 
-    private int id = 0;
-
     private EditText editTextNome;
     private EditText editTextData;
-    private EditText editTextLocal;
+
+    private int id = 0;
+    private Spinner spinnerLocais;
+    private ArrayAdapter<Local> locaisAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,40 +30,67 @@ public class CadastroEventoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_evento);
         setTitle("Cadastro de Eventos");
 
-        editTextNome = findViewById(R.id.editText_nome);
-        editTextData = findViewById(R.id.editText_data);
-        editTextLocal = findViewById(R.id.editText_local);
+        spinnerLocais = findViewById(R.id.sp_locais);
+        editTextNome = findViewById(R.id.ed_edicaoNovoEvento);
+        editTextData = findViewById(R.id.ed_edicaoNovaData);
 
-        carregarEvento();
+        mostrarLocais();
+        mostrarEvento();
     }
 
-    public void carregarEvento() {
+    private void mostrarLocais() {
+        LocalDAO localDAO = new LocalDAO(getBaseContext());
+        locaisAdapter = new ArrayAdapter<Local>(CadastroEventoActivity.this,
+                android.R.layout.simple_spinner_item,
+                localDAO.listar());
+        spinnerLocais.setAdapter(locaisAdapter);
+    }
+
+    public void mostrarEvento() {
         Intent intent = getIntent();
-        if (intent != null && intent.getExtras() != null && intent.getExtras().get("eventoEdicao") != null) {
-            Eventos eventos = (Eventos) intent.getExtras().get("eventoEdicao");
-            editTextNome.setText(eventos.getNome());
-            editTextData.setText(eventos.getData());
-            editTextLocal.setText(eventos.getLocal());
-            id = eventos.getId();
+        if (intent != null && intent.getExtras() != null && intent.getExtras().get("eventoEditado") != null ) {
+            Eventos evento = (Eventos) intent.getExtras().get("eventoEditado");
+            editTextNome.setText(evento.getNome());
+            editTextData.setText(evento.getData());
+            int posicaoLocal = posicaoLocais(evento.getLocal());
+            spinnerLocais.setSelection(posicaoLocal);
+            id = evento.getId();
         }
+    }
+
+    private int posicaoLocais(Local local) {
+        for (int posicao = 0; posicao < locaisAdapter.getCount(); posicao++) {
+            if (locaisAdapter.getItem(posicao).getId() == local.getId()){
+                return posicao;
+            }
+        }
+        return 0;
     }
 
     public void onClickVoltar(View v) {
         finish();
     }
 
-    public void onClickSalvar (View v) {
+    public void onClickSalvar(View v) {
         String nome = editTextNome.getText().toString();
         String data = editTextData.getText().toString();
-        String local = editTextLocal.getText().toString();
+        Local local = (Local) spinnerLocais.getSelectedItem();
 
-        Eventos eventos = new Eventos(id, nome, data, local);
-        EventoDAO eventoDAO = new EventoDAO(getBaseContext());
-        boolean salvou = eventoDAO.salvar(eventos);
-        if (salvou) {
-            finish();
+        if (nome.length() == 0 || data.length() == 0) {
+            editTextNome.setError("Nome obrigatório");
+            editTextData.setError("Data obrigatória");
         } else {
-            Toast.makeText(CadastroEventoActivity.this, "Erro ao salvar", Toast.LENGTH_LONG).show();
+            Eventos evento = new Eventos(id, nome, data, local);
+            EventoDAO eventoDao = new EventoDAO(getBaseContext());
+            boolean salvou = eventoDao.salvar(evento);
+
+            if (salvou) {
+                finish();
+            } else {
+                Toast.makeText(CadastroEventoActivity.this, "Erro ao salvar", Toast.LENGTH_SHORT).show();
+            }
+
         }
+
     }
 }

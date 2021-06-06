@@ -1,4 +1,4 @@
-package br.senai;
+package br.senai.sc.appcadastrodeeventos.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

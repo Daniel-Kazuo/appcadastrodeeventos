@@ -3,21 +3,13 @@ package br.senai.sc.appcadastrodeeventos.modelo;
 import java.io.Serializable;
 
 public class Eventos implements Serializable {
-
     private int id;
-
     private String nome;
     private String data;
-    private String local;
+    private Local local;
 
-    public Eventos(int id, String nome, String data, String local) {
+    public Eventos(int id, String nome, String data, Local local) {
         this.id = id;
-        this.nome = nome;
-        this.data = data;
-        this.local = local;
-    }
-
-    public Eventos(String nome, String data, String local) {
         this.nome = nome;
         this.data = data;
         this.local = local;
@@ -31,6 +23,14 @@ public class Eventos implements Serializable {
         this.id = id;
     }
 
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -39,26 +39,18 @@ public class Eventos implements Serializable {
         this.nome = nome;
     }
 
-    public String getData() {
-        return data;
-    }
-
-    public void setData (String data) {
-        this.data = data;
-    }
-
-    public String getLocal() {
+    public byte[] getLocal() {
         return local;
     }
 
-    public void setLocal(String local) {
+    public void setLocal(Local local) {
         this.local = local;
     }
 
     @Override
     public String toString() {
-        return  "Evento: " + nome +
-                "\nData: " + data +
-                "\nLocal: " + local;
+        return "Evento: " + getNome() +
+                "\nLocal: " + getLocal().getNome() +
+                "\nData: " + getData();
     }
 }
