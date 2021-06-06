@@ -34,7 +34,7 @@ public class CadastroEventoActivity extends AppCompatActivity {
 
     public void carregarEvento() {
         Intent intent = getIntent();
-        if (intent != null && intent.getExtras() !=null && intent.getExtras().get("eventoEdicao") != null) {
+        if (intent != null && intent.getExtras() != null && intent.getExtras().get("eventoEdicao") != null) {
             Eventos eventos = (Eventos) intent.getExtras().get("eventoEdicao");
             editTextNome.setText(eventos.getNome());
             editTextData.setText(eventos.getData());
@@ -48,10 +48,6 @@ public class CadastroEventoActivity extends AppCompatActivity {
     }
 
     public void onClickSalvar (View v) {
-        EditText editTextNome = findViewById(R.id.editText_nome);
-        EditText editTextData = findViewById(R.id.editText_data) ;
-        EditText editTextLocal = findViewById(R.id.editText_local);
-
         String nome = editTextNome.getText().toString();
         String data = editTextData.getText().toString();
         String local = editTextLocal.getText().toString();

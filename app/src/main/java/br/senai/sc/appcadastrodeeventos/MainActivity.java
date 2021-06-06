@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView listViewEventos;
     private ArrayAdapter<Eventos> adapterEventos;
+
     private int id = 0;
 
     @Override
@@ -65,12 +66,11 @@ public class MainActivity extends AppCompatActivity {
 
                     if (eventoDAO.excluir(eventoClicado)) {
                         Toast.makeText(getApplicationContext(), "Produto excluido com Sucesso", Toast.LENGTH_LONG).show();
-                    }else {
+                    } else {
                         Toast.makeText(getApplicationContext(), "Erro ao excluir", Toast.LENGTH_LONG).show();
-
                     }
                     return true;
-            }
+                }
         });
     }
 

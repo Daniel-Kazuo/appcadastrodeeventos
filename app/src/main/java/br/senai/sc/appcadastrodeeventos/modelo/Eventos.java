@@ -1,7 +1,5 @@
 package br.senai.sc.appcadastrodeeventos.modelo;
 
-import androidx.annotation.NonNull;
-
 import java.io.Serializable;
 
 public class Eventos implements Serializable {
@@ -45,7 +43,7 @@ public class Eventos implements Serializable {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData (String data) {
         this.data = data;
     }
 
