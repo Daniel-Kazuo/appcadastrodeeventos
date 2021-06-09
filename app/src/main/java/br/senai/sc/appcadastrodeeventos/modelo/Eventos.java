@@ -39,7 +39,7 @@ public class Eventos implements Serializable {
         this.nome = nome;
     }
 
-    public byte[] getLocal() {
+    public Local getLocal() {
         return local;
     }
 
@@ -50,7 +50,7 @@ public class Eventos implements Serializable {
     @Override
     public String toString() {
         return "Evento: " + getNome() +
-                "\nLocal: " + getLocal().getNome() +
+                "\nLocal: " + getLocal() +
                 "\nData: " + getData();
     }
 }
